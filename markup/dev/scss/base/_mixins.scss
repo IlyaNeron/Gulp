@@ -8,6 +8,24 @@
   transform: translate(-50%, -50%);
 }
 
+// inline-space-reset
+// this mixin used for a remove default indent in the inline block elements
+//
+@mixin inline-space-reset {
+  line-height: 0;
+  font-size: 0;
+  letter-spacing: 0;
+}
+
+// inline-space
+// this mixin used for add default text-styles to the child-elements
+//
+@mixin inline-space($size) {
+  line-height: 1;
+  font-size: $size;
+  letter-spacing: normal;
+}
+
 /// Mixin helping defining both `width` and `height` simultaneously.
 ///
 /// @author Hugo Giraudel
@@ -51,11 +69,13 @@
 $animation-speed: .3s !default;
 
 @mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
-  $list:();
+  $list: ();
+
   @each $prop in $properties {
     $str: #{$prop} #{$duration} #{$easing};
     $list: join($list, #{$str}, comma);
   }
+
   transition: $list;
 }
 
@@ -99,62 +119,85 @@ $animation-speed: .3s !default;
   $width: nth($size, 1);
   $height: nth($size, length($size));
   $foreground-color: nth($color, 1);
-  $background-color: if(length($color) == 2, nth($color, 2), transparent);
+  $background-color: if(length($color)==2, nth($color, 2), transparent);
   height: 0;
   width: 0;
 
-  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+  @if ($direction==up) or ($direction==down) or ($direction==right) or ($direction==left) {
     $width: $width / 2;
     $height: if(length($size) > 1, $height, $height/2);
 
-    @if $direction == up {
+    @if $direction==up {
       border-bottom: $height solid $foreground-color;
       border-left: $width solid $background-color;
       border-right: $width solid $background-color;
-    } @else if $direction == right {
+    }
+
+    @else if $direction==right {
       border-bottom: $width solid $background-color;
       border-left: $height solid $foreground-color;
       border-top: $width solid $background-color;
-    } @else if $direction == down {
+    }
+
+    @else if $direction==down {
       border-left: $width solid $background-color;
       border-right: $width solid $background-color;
       border-top: $height solid $foreground-color;
-    } @else if $direction == left {
+    }
+
+    @else if $direction==left {
       border-bottom: $width solid $background-color;
       border-right: $height solid $foreground-color;
       border-top: $width solid $background-color;
     }
-  } @else if ($direction == up-right) or ($direction == up-left) {
+  }
+
+  @else if ($direction==up-right) or ($direction==up-left) {
     border-top: $height solid $foreground-color;
 
-    @if $direction == up-right {
-      border-left:  $width solid $background-color;
-    } @else if $direction == up-left {
+    @if $direction==up-right {
+      border-left: $width solid $background-color;
+    }
+
+    @else if $direction==up-left {
       border-right: $width solid $background-color;
     }
-  } @else if ($direction == down-right) or ($direction == down-left) {
+  }
+
+  @else if ($direction==down-right) or ($direction==down-left) {
     border-bottom: $height solid $foreground-color;
 
-    @if $direction == down-right {
-      border-left:  $width solid $background-color;
-    } @else if $direction == down-left {
+    @if $direction==down-right {
+      border-left: $width solid $background-color;
+    }
+
+    @else if $direction==down-left {
       border-right: $width solid $background-color;
     }
-  } @else if ($direction == inset-up) {
+  }
+
+  @else if ($direction==inset-up) {
     border-color: $background-color $background-color $foreground-color;
     border-style: solid;
     border-width: $height $width;
-  } @else if ($direction == inset-down) {
+  }
+
+  @else if ($direction==inset-down) {
     border-color: $foreground-color $background-color $background-color;
     border-style: solid;
     border-width: $height $width;
-  } @else if ($direction == inset-right) {
+  }
+
+  @else if ($direction==inset-right) {
     border-color: $background-color $background-color $background-color $foreground-color;
     border-style: solid;
     border-width: $width $height;
-  } @else if ($direction == inset-left) {
+  }
+
+  @else if ($direction==inset-left) {
     border-color: $background-color $foreground-color $background-color $background-color;
     border-style: solid;
     border-width: $width $height;
   }
+
 }

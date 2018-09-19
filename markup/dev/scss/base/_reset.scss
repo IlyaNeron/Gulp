@@ -3,7 +3,9 @@ html {
   height: 100%;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -12,16 +14,18 @@ html {
 }
 
 body {
-  font: #{$font-size-base}/#{$base-line-height} $base-font-sans-serif;
-  // font-family: $base-font-family;
+  font: $font-weight-base #{$font-size-base}/#{$base-line-height} $base-font-sans-serif;
   background: $base-background-color;
-  // font-size: $font-size-base;
   min-width: $base-min-width;
-  // line-height: $base-line-height;
   color: $base-color;
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+strong,
+b {
+  font-weight: 700;
 }

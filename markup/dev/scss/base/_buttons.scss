@@ -1,0 +1,67 @@
+.btn {
+  border-radius: $btn-border-radius;
+  padding: $btn-padding;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  font-family: $second-font-family;
+  text-transform: uppercase;
+  border: $btn-border;
+  outline: none;
+  @include animate(color background border);
+  cursor: pointer;
+  min-width: $btn-min-width;
+  display: inline-block;
+  vertical-align: top;
+
+  &-primary {
+    color: $btn-color;
+    background-color: $btn-background-color;
+
+    &:hover {
+      background: $red;
+      color: $white;
+    }
+
+  }
+
+  &-secondary {
+    background: $red;
+    color: $white;
+    border: $btn-secondary-border;
+
+    &:hover {
+      background: $dark-gray;
+      color: $white;
+    }
+
+  }
+
+}
+
+
+@include media('<tablet') {
+
+  .btn {
+
+    &-primary,
+    &-secondary {
+      padding: 15px;
+    }
+
+  }
+
+}
+
+@include media('<phone') {
+
+  .btn {
+
+    &-primary,
+    &-secondary {
+      min-width: 100%;
+    }
+
+  }
+
+}

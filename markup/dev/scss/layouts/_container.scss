@@ -1,4 +1,6 @@
 .container {
-    max-width: 1170px;
-    margin: 0 auto;
+  max-width: $base-max-width;
+  margin: 0 auto;
+  padding: $base-padding;
+  @extend %clearfix;
 }
