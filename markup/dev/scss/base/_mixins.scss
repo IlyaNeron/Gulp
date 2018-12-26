@@ -20,8 +20,8 @@
 // inline-space
 // this mixin used for add default text-styles to the child-elements
 //
-@mixin inline-space($size) {
-  line-height: 1;
+@mixin inline-space($line-height, $size) {
+  line-height: $line-height;
   font-size: $size;
   letter-spacing: normal;
 }

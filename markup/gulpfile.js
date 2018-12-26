@@ -1,4 +1,4 @@
-"use strict" 
+"use strict"
 
 var gulp         = require('gulp'), // Подключаем Gulp
 		sass         = require('gulp-sass'), //Подключаем Sass пакет,
@@ -13,8 +13,7 @@ var gulp         = require('gulp'), // Подключаем Gulp
 		cache        = require('gulp-cache'), // Подключаем библиотеку кеширования
 		autoprefixer = require('gulp-autoprefixer'),// Подключаем библиотеку для автоматического добавления префиксов
 		plumber      = require('gulp-plumber'),
-		coffee       = require('gulp-coffee'),
-		sourcemaps   = require('gulp-sourcemaps');
+		sourcemaps   = require('gulp-sourcemaps')
 
 gulp.task('sass', function(){ // Создаем таск Sass
 	return gulp.src('dev/scss/**/*.scss') // Берем источник
@@ -27,20 +26,22 @@ gulp.task('sass', function(){ // Создаем таск Sass
 		.pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
 });
 
-gulp.task('browser-sync', function() { // Создаем таск browser-sync
-	browserSync({ // Выполняем browserSync
-		server: { // Определяем параметры сервера
-			baseDir: 'dev' // Директория для сервера - app
+gulp.task('browser-sync', function () {
+	browserSync({
+		server: {
+			baseDir: "../",
+			index: "index.html",
+			directory: true
 		},
-		notify: false // Отключаем уведомления
+		notify: false
 	});
 });
 
 gulp.task('scripts', function() {
-	return gulp.src(['dev/js/main.js'])
-		.pipe(concat('main.min.js')) // Собираем их в кучу в новом файле libs.min.js
+	return gulp.src(['dev/js/*.js'])
+		.pipe(concat('main.min.js')) // Собираем их в кучу в новом файле main.min.js
 		.pipe(uglify()) // Сжимаем JS файл
-		.pipe(gulp.dest('dev/js')); // Выгружаем в папку app/js
+		.pipe(gulp.dest('dev/js')); // Выгружаем в папку dev/js
 });
 
 gulp.task('css-libs', ['sass'], function() {
